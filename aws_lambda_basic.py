@@ -16,7 +16,18 @@ iam_console_client = aws_management_console.client('iam')
 
 list_users = iam_console_client.list_users()
 
-pprint(list_users)
+#pprint(list_users)
 
 for user in list_users['Users']:
      print(user['UserName'])
+
+
+# Open Ec2 Console information
+ec2_console = aws_management_console.resource(service_name ='ec2')
+try:
+    result = ec2_console.describe_instances()['Reservations']
+    for every_instance in result:
+        for value in every_instance['Instances']:
+            print(value['InstanceId'])
+except:
+    print("No instances to be found")
