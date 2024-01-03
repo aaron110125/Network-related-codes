@@ -1,5 +1,6 @@
 #import all modules and libraries
-
+# https://www.youtube.com/watch?v=dMLvgvJ23LI&list=PLjl2dJMjkDjlcI3SQErSq4UMX3okzafvO&index=12
+"""
 import boto3
 from pprint import pprint
 
@@ -31,3 +32,25 @@ try:
             print(value['InstanceId'])
 except:
     print("No instances to be found")
+"""
+
+import boto3
+
+aws_management_console = boto3.session.Session(profile_name ="default")
+ec2_console = aws_management_console.client('ec2')
+
+response = ec2_console.run_instances(
+	ImageId = 'ami-0230bd60aa48260c6',
+	InstanceType = 't2.micro',
+	MaxCount = 1,
+	MinCount = 1
+
+)
+
+# response = ec2_console.start_instances(   
+#      InstanceIds = ['i-Enter your instance Id here']
+# )
+
+
+
+
